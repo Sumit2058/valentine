@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Will You Be My Valentine?</title>
+<style>
+body {
+  background: linear-gradient(135deg,#ff5f6d,#ffc371);
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  margin:0;
+}
+.card {
+  background: rgba(255,255,255,0.15);
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+}
+button {
+  padding:15px 30px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+}
+#yes {
+  background:#ff4d6d;
+  color:white;
+}
+#no {
+  background:white;
+  color:#ff4d6d;
+  position:absolute;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>💖 Will you be my Valentine? 💖</h1>
+  <p>You make my world brighter every day.</p>
+  <button id="yes" onclick="yes()">YES 💕</button>
+  <button id="no" onmouseover="move()">NO ❌</button>
+</div>
+
+<script>
+function move(){
+  const b=document.getElementById("no");
+  b.style.left=Math.random()*300+"px";
+  b.style.top=Math.random()*200+"px";
+}
+function yes(){
+  document.body.innerHTML=
+  "<h1 style='text-align:center'>YAYYYY 💍💕<br>I love you forever ❤️</h1>";
+}
+</script>
+
+</body>
+</html>
