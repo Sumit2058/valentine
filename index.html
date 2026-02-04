@@ -7,21 +7,29 @@
   <audio id="bgMusic" src="romantic.mp3" preload="auto"></audio>
 
 body {
-  background: linear-gradient(135deg,#ff5f6d,#ffc371);
   font-family: Arial, sans-serif;
+  margin: 0;
   height: 100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:white;
-  margin:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* ORIGINAL LIGHT RED / PINK BACKGROUND */
+  background: linear-gradient(135deg, #ff5f6d, #ffc3a0);
+
+  color: white;
+  overflow: hidden; /* keeps hearts clean */
 }
+
 .card {
   background: rgba(255,255,255,0.15);
-  padding:40px;
-  border-radius:20px;
-  text-align:center;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
 }
+
 button {
   padding:15px 30px;
   font-size:18px;
