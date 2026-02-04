@@ -38,37 +38,81 @@ button {
   color:#ff4d6d;
   position:absolute;
 }
+  .heart {
+  position: fixed;
+  font-size: 20px;
+  pointer-events: none;
+  animation: floatUp 4s linear forwards;
+  top: 100vh;
+  left: 50vw;
+  transform: translate(-50%, 0);
+}
+
+@keyframes floatUp {
+  0%   { transform: translate(-50%, 0) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -120vh) scale(1.6); opacity: 0; }
+}
+
 </style>
 </head>
 <body>
 
 <div class="card">
-  <h1>💖 Will you be my Valentine? 💖</h1>
-  <p>You make my world brighter every day.</p>
+  <h1>💖 Alisha, will you be my Valentine? 💖</h1>
+  <p>You make my world brighter every single day.</p>
   <button id="yes" onclick="yes()">YES 💕</button>
   <button id="no" onmouseover="move()">NO ❌</button>
 </div>
 
+
 <script>
-function move(){
+function move() {
   const b = document.getElementById("no");
-  b.style.left = Math.random()*300 + "px";
-  b.style.top  = Math.random()*200 + "px";
+  b.style.left = Math.random() * 300 + "px";
+  b.style.top = Math.random() * 200 + "px";
 }
 
-function yes(){
+function spawnHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = "💖";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (16 + Math.random() * 26) + "px";
+  heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
+}
+
+function startHearts() {
+  // burst + continuous hearts
+  for (let i = 0; i < 10; i++) setTimeout(spawnHeart, i * 120);
+  window.heartInterval = setInterval(spawnHeart, 250);
+}
+
+function yes() {
+  // Start hearts
+  startHearts();
+
+  // If you added music later, this will try to play it
   const music = document.getElementById("bgMusic");
-  music.volume = 0.7;
+  if (music) {
+    music.volume = 0.7;
+    music.play().catch(() => {});
+  }
 
-  // Start music on user click (allowed by browsers)
-  music.play().catch(err => console.log("Music blocked:", err));
-
-  // Change only the card content (keeps audio alive)
+  // Change only the card (don’t replace whole body)
   document.querySelector(".card").innerHTML = `
-    <h1>YAYYYY 💍💕</h1>
-    <p style="font-size:20px;">You just made me the happiest person alive.<br>I love you forever ❤️</p>
+    <h1>YAYYYY Alisha!! 💍💕</h1>
+    <p style="font-size:20px;">
+      You just made me the happiest person alive.<br>
+      I love you forever ❤️
+    </p>
   `;
 }
 </script>
+
 </body>
 </html>
