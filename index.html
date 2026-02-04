@@ -4,7 +4,8 @@
 <head>
 <title>Will You Be My Valentine?</title>
 <style>
-  <audio id="bgMusic" src="romantic.mp3"></audio>
+  <audio id="bgMusic" src="romantic.mp3" preload="auto"></audio>
+
 body {
   background: linear-gradient(135deg,#ff5f6d,#ffc371);
   font-family: Arial, sans-serif;
@@ -50,20 +51,24 @@ button {
 
 <script>
 function move(){
-  const b=document.getElementById("no");
-  b.style.left=Math.random()*300+"px";
-  b.style.top=Math.random()*200+"px";
+  const b = document.getElementById("no");
+  b.style.left = Math.random()*300 + "px";
+  b.style.top  = Math.random()*200 + "px";
 }
 
 function yes(){
   const music = document.getElementById("bgMusic");
-  music.play();
+  music.volume = 0.7;
 
-  document.body.innerHTML =
-  "<h1 style='text-align:center'>YAYYYY 💍💕<br>I love you forever ❤️</h1>";
+  // Start music on user click (allowed by browsers)
+  music.play().catch(err => console.log("Music blocked:", err));
+
+  // Change only the card content (keeps audio alive)
+  document.querySelector(".card").innerHTML = `
+    <h1>YAYYYY 💍💕</h1>
+    <p style="font-size:20px;">You just made me the happiest person alive.<br>I love you forever ❤️</p>
+  `;
 }
 </script>
-
-
 </body>
 </html>
